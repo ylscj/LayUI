@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>LayUI模板</title>
+	<meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+</head>
+<body>
+	<div class="layui-tab layui-tab-brief" lay-allowClose="true" lay-filter="test1">
+		<ul class="layui-tab-title">
+			<li lay-id='m1' class="layui-this">角色管理</li>
+			<li lay-id='m2'>用户管理</li>
+			<li lay-id='m3'>权限管理</li>
+		</ul>
+		<div class="layui-tab-content">
+			<div class="layui-tab-item layui-show">角色管理的内容</div>
+			<div class="layui-tab-item">用户管理的内容</div>
+			<div class="layui-tab-item">权限管理的内容</div>
+		</div>
+	</div>
+	<script src="../layui/layui.js" charset="utf-8"></script>
+	<script>
+		layui.use('element', function(){
+			var element = layui.element;
+			//
+			var layid=location.hash.replace(/^#test1=/,'');
+			element.tabChange('test1', layid);
+			//
+			element.on('tab(test1', function(){
+				location.hash = 'test1=' + this.getAttribute('lay-id');
+			});
+
+		});
+	</script>
+</body>
+</html>
